@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Utilities</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            vertical-align: baseline;
+        }
+
+        .selectUtil {
+            margin-top: calc(50vh - 100px);
+            margin-left: calc(50vw - 160px);
+            display: flex;
+            width: 320px;
+            height: 180px;
+            justify-content: space-between;
+        }
+
+        .utilBtn {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 10px 30px 10px 30px;
+            border-radius: 10px;
+            border: solid 2px #eee;
+            background-color: #f8f8f8;
+            box-sizing: border-box;
+        }
+
+        .utilBtn:hover {
+            box-shadow: 4px 4px 6px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .utilBtn > img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="selectUtil">
+        <button class="utilBtn" onclick="location.href = 'calculator.html';">
+            <img src="static/images/calculator.png" alt="Calculator Icon">
+            <p>Calculator</p>
+        </button>
+        <button class="utilBtn" onclick="location.href = 'weather.html';">
+            <img src="static/images/cloudy.png" alt="Weather Icon">
+            <p>Weather</p>
+        </button>
+    </div>
+</body>
+</html>

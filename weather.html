@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            vertical-align: baseline;
+        }
+
+        .btn,
+        .row {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .weatherTable {
+            margin-left: calc(50vw - 175px);
+            margin-top: calc(50vh - 175px);
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 350px;
+            height: 50px;
+            background-color: #68B0AB;
+            border-radius: 5px;
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+            color: #fff;
+            box-shadow: 4px 4px 6px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btnblock{
+            background-color: #fff;
+            padding: 0px;
+            box-shadow: 0 0 0 0;
+        }
+
+        .btn {
+            height: 50px;
+            width: 170px;
+            border-radius: 5px;
+            background-color: #1EAE98;
+            color: #fff;
+            box-shadow: 4px 4px 6px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn:hover {
+            background-color: #28DF99;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="weatherTable">
+        <div class="row btnblock">
+            <input class="btn locBtn" type="button" value="Location" onclick="getLocation()" />
+            <input class="btn weatherBtn" type="button" value="Weather" onclick="getWeather()" />
+        </div>
+        <div class="row">
+            <div class="infoLabel long">Longitude</div>
+            <div class="infoData longdata"></div>
+        </div>
+        <div class="row">
+            <div class="infoLabel lat">Latitude</div>
+            <div class="infoData latdata"></div>
+        </div>
+        <div class="row">
+            <div class="infoLabel name">Place</div>
+            <div class="infoData namedata"></div>
+        </div>
+        <div class="row">
+            <div class="infoLabel temp">Temerature</div>
+            <div class="infoData tempdata"></div>
+        </div>
+        <div class="row">
+            <div class="infoLabel humidity">Humidity</div>
+            <div class="infoData humdata"></div>
+        </div>
+    </div>
+</body>
+<script>
+    var lat;
+    var long;
+    var weatherData;
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        lat = position.coords.latitude;
+        long = position.coords.longitude;
+        document.querySelector('.longdata').innerHTML = long;
+        document.querySelector('.latdata').innerHTML = lat;
+    }
+
+    function getWeather(showData) {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (this.status === 200) {
+                weatherData = JSON.parse(this.responseText);
+                console.log(weatherData);
+                document.querySelector('.namedata').innerHTML = weatherData.name;
+                document.querySelector('.tempdata').innerHTML = Math.round((weatherData.main.temp - 273.15) * 100) / 100.0 + ' C';
+                document.querySelector('.humdata').innerHTML = weatherData.main.humidity;
+            }
+        }
+        xhr.open("GET",
+            "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long +
+            "&appid=4445e1306f956cb9314f1ce5b5a61f52",
+            true);
+        xhr.send();
+    }
+</script>
+
+</html>

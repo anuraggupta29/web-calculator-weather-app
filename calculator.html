@@ -1,0 +1,145 @@
+<html>
+<head>
+    <title>Calculator</title>
+    <script>
+        function dis(val) {
+            document.getElementById("result").value += val;
+        }
+
+        function solve() {
+            var x = document.getElementById("result").value;
+            document.getElementById("result").value = eval(x);
+        }
+
+        function clr() {
+            document.getElementById("result").value = "";
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            vertical-align: baseline;
+        }
+
+        .calBtn,
+        .displayBox {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .table {
+            margin-top: calc(50vh - 175px);
+            margin-left: calc(50vw - 175px);
+            display: flex;
+            flex-direction: column;
+            height: 350px;
+            justify-content: space-between;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            width: 350px;
+            justify-content: space-between;
+        }
+
+        .displayBox {
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            box-shadow: 4px 4px 6px 2px rgba(0, 0, 0, 0.05);
+            color: black;
+            border: 0px;
+            width: 260px;
+            height: 50px;
+            padding: 10px;
+        }
+
+        .calBtn {
+            border-radius: 5px;
+            box-shadow: 4px 4px 6px 2px rgba(0, 0, 0, 0.05);
+            color: #fff;
+            border: 0px;
+            width: 80px;
+            height: 50px;
+        }
+
+        .calBtn:hover {
+            background-color: #28DF99;
+        }
+
+        .numBtn {
+            background-color: #e0e0e0;
+            color: #000;
+        }
+
+        .numBtn:hover {
+            background-color: #444444;
+            color: #fff;
+        }
+
+        .operator {
+            background-color: #68B0AB;
+        }
+
+        .solver {
+            background-color: #1E5F74;
+        }
+
+        .bracket {
+            background-color: #1EAE98;
+        }
+
+        .clr {
+            background-color: #FF7E67;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table">
+        <div class="row">
+            <div><input class="displayBox" type="text" id="result" /></div>
+            <!-- clr() function will call clr to clear all value -->
+            <div><input class="calBtn clr" type="button" value="c" onclick="clr()" /></div>
+        </div>
+        <div class="row">
+            <div><input class="calBtn operator" type="button" value="**" onclick="dis('**')" /> </div>
+            <div><input class="calBtn operator" type="button" value="%" onclick="dis('%')" /> </div>
+            <div><input class="calBtn bracket" type="button" value="(" onclick="dis('(')" /> </div>
+            <div><input class="calBtn bracket" type="button" value=")" onclick="dis(')')" /> </div>
+        </div>
+        <div class="row">
+            <div><input class="calBtn numBtn" type="button" value="1" onclick="dis('1')" /> </div>
+            <div><input class="calBtn numBtn" type="button" value="2" onclick="dis('2')" /> </div>
+            <div><input class="calBtn numBtn" type="button" value="3" onclick="dis('3')" /> </div>
+            <div><input class="calBtn operator" type="button" value="/" onclick="dis('/')" /> </div>
+        </div>
+        <div class="row">
+            <div><input class="calBtn numBtn" type="button" value="4" onclick="dis('4')" /> </div>
+            <div><input class="calBtn numBtn" type="button" value="5" onclick="dis('5')" /> </div>
+            <div><input class="calBtn numBtn" type="button" value="6" onclick="dis('6')" /> </div>
+            <div><input class="calBtn operator" type="button" value="-" onclick="dis('-')" /> </div>
+        </div>
+        <div class="row">
+            <div><input class="calBtn numBtn" type="button" value="7" onclick="dis('7')" /> </div>
+            <div><input class="calBtn numBtn" type="button" value="8" onclick="dis('8')" /> </div>
+            <div><input class="calBtn numBtn" type="button" value="9" onclick="dis('9')" /> </div>
+            <div><input class="calBtn operator" type="button" value="+" onclick="dis('+')" /> </div>
+        </div>
+        <div class="row">
+            <div><input class="calBtn numBtn" type="button" value="." onclick="dis('.')" /> </div>
+            <div><input class="calBtn numBtn" type="button" value="0" onclick="dis('0')" /> </div>
+
+            <div><input class="calBtn solver" type="button" value="=" onclick="solve()" /> </div>
+            <div><input class="calBtn operator" type="button" value="*" onclick="dis('*')" /> </div>
+        </div>
+    </div>
+</body>
+
+</html>
